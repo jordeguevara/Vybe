@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Vybe</title>
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+        <!--         Google Foonts Open Sans -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/style.css">
+
+</head>
+
+<body>
+        <!-- to avoid naming conflicts between Bootstrap  we called main container, "capsule"-->
+        <div class="capsule"> 
+                <header class="header">
+                        <img src="img/pulse.svg" class="logo">
+                        <!-- Search navigation that may need to be implemented later -->
+                        <form action="#" class="search">
+                                <input type="text" class="search__input">
+                                <button class="search__button">
+                                        <svg class="search__icon">
+                                                <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
+                                        </svg>
+                                </button>
+                        </form>
+
+                        <nav class="user-nav">
+                                <!-- awaiting implementations of nav  -->
+                                <div class="user-nav_profile-box">
+                                        <div class="user-nav__icon-box">
+                                                <img src="img/userjorde.png" class="user-nav__user-photo" id="navPhoto">
+                                                <span class="user-nav__user-name" id="nav-name"></span>
+                                        </div>
+                                </div>
+                        </nav>
+                </header>
+
+                <div class="container">
+                        <!-- Meat and bones of the Home Page that is held together responsively by Bootstrap: Streaks, VybeView -->
+                        <div class="content">
+                                <!-- awaiting on implementations
+                                will be populated onces user has friends
+                                hidden for now
+                                  -->
+                                <div class="streaks" hidden>
+                                        Streaks:
+                                </div>
+
+                                <main class="vybeView" id="vybeView">
+                                        <!-- modal that we take in user input to form Challenge object -->
+                                        <div class="modal" tabindex="-1" role="dialog" id="myModal">
+                                                <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                        <h5 class="modal-title">New Vybe Challenge</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                </div>
+                                                                <div class="modal-body">
+
+                                                                        <form id="postQuestionForm">
+                                                                                <div class="form-group">
+                                                                                        
+                                                                                        
+                                                                                        <label for="vybeQuestion">Vybe Question</label>
+                                                
+                                                                                        <input type="text" class="form-control" id="vybeQuestion" aria-describedby="question" placeholder="Insert Question here">
+                                                                                        
+                                                                                </div>
+
+                                                                                <div class="form-group">
+
+                                                                                        <label for="formGroupExampleInput">Possible Answer:</label>
+                                                                                        <div class="radio">
+                                                                                         <input type="radio" name="optradio" checked value="1">
+                                                                                        <input type="text" class="form-control" id="answerOne" placeholder="Possible Question Here">
+                                                                                        </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                                <div class="radio">
+                                                                                                                <input type="radio" name="optradio" checked value="2">
+                                                                                        <input type="text" class="form-control" id="answerTwo" placeholder="Possible Question Here">
+                                                                                        </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                                <div class="radio">
+                                                                                                <input type="radio" name="optradio" checked value="3">
+                                                                                        <input type="text" class="form-control" id="answerThree" placeholder="Possible Question Here">
+                                                                                        </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                                <div class="radio">
+                                                                                                                <input type="radio" name="optradio" checked value="4">
+                                                                                        <input type="text" class="form-control" id="answerFour" placeholder="Possible Question Here">
+                                                                                        </div>
+                                                                                </div>
+                                                                        </form>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-primary" id="postQuestionBtn" onclick="createVybeChallengePrototype()">Submit</button>
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModal">Close</button>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+
+
+
+                                        <div class="post">
+                                                <div class="postarea">
+                                                        <a class="postarea__img">
+                                                                <img src="img/userjorde.png" class="postarea__img--pic" id="postarea-photo">
+                                                        </a>
+
+                                                </div>
+
+                                                <button type="button" class="postChallengeBtn" data-toggle="modal" data-target="#myModal" id="postChallengeBtn">Post Challenge</button>
+                                                <!-- <button name="submitPost" class="postChallengeBtn">Post Challenge</button> -->
+
+                                        </div>
+                                        <div class="feed">
+                                                <ul id="feed-list">
+                                                        <li>    
+                                                                <!-- for testing, code below this line to be deleted -->
+                                                                <div class="news">
+                                                                        <div class="news__header">
+                                                                                <img src="img/user-3.jpg" class="user-nav__user-photo news__header--img">
+                                                                                <label class="name-title  news__header--title">First Last Name</label>
+                                                                        </div>
+                                                                        <div class="news__userContent" id="userContent">
+                                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                                        elit. Asperiores, suscipit id expedita
+                                                                                        voluptatem, beatae ipsa quaerat officiis
+                                                                                        velit vel est quasi necessitatibus
+                                                                                        obcaecati quo minima dolorem aperiam
+                                                                                        nulla veritatis placeat.</p>
+                                                                        </div>
+
+                                                                        <div class="news__activity">
+                                                                                <!-- Vybe-btn is similar to like-->
+                                                                                <button class="news__activity__btn vybe-btn">
+                                                                                        <span class="news__activity--icon">
+                                                                                                <!-- <svg class="user-nav__icon">
+                                                                                                        <use href="img/vybe.png"></use>
+                                                                                                </svg> -->
+                                                                                                <img class="user-nav__icon" src="img/vybe.png">
+                                                                                        </span>
+                                                                                </button>
+                                                                                <button class="news__activity__btn play-btn">
+                                                                                        <span class="news__activity--icon">
+                                                                                                <!-- <svg class="user-nav__icon">
+                                                                                                        <use href="img/play.png"></use>
+                                                                                                </svg> -->
+                                                                                                <img class="user-nav__icon" src="img/play.png">
+                                                                                        </span>
+                                                                                </button>
+                                                                                <!-- Delete btn for Now, must create pop up with options by next week -->
+                                                                                <button class="news__activity__btn" id="options-btn">
+                                                                                        <span class="news__activity--icon">
+                                                                                                <!-- <svg class="user-nav__icon">
+                                                                                                        <use href="img/option.png"></use>
+                                                                                                </svg> -->
+                                                                                                <img class="user-nav__icon" src="img/option.png">
+                                                                                        </span>
+                                                                                </button>
+
+
+                                                                        </div>
+                                                                </div>
+                                                        </li>
+
+                                                        <li>     <!-- for testing, code above this line to be deleted -->
+                                                                <div class="news--opened">
+                                                                        <div class="news__header">
+                                                                                <img src="img/user-1.jpg" class="user-nav__user-photo news__header--img">
+                                                                                <label class="name-title  news__header--title">First Last Name</label>
+                                                                                <div class="news__line"></div>
+                                                                        </div>
+                                                                        <div class="question">
+                                                                                <div class="questionAsked" id="question"> What is love?</div>
+                                                                                <form id='questionForm'>
+                                                                                        <div class="radio">
+                                                                                                <label>
+                                                                                                        <input type="radio" name="optradio" checked>Option 1</label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                                <label>
+                                                                                                        <input type="radio" name="optradio">Option 2</label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                                <label>
+                                                                                                        <input type="radio" name="optradio" disabled>Option 3</label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                                <label>
+                                                                                                        <input type="radio" name="optradio" checked>Option 4</label>
+                                                                                        </div>
+                                                                                </form>
+                                                                                <button class="postChallengeBtn" id="submitAnswer"> Submit</button>
+                                                                        </div>
+                                                                </div>
+                                                        </li>
+                                                                 <!-- for testing, below this line to be deleted -->
+                                                        <!-- <li>
+                                                                <div class="news">
+                                                                        <div class="news__header">
+                                                                                <img src="img/user-1.jpg" class="user-nav__user-photo news__header--img">
+                                                                                <label class="name-title  news__header--title">First Last Name</label>
+                                                                                <div class="news__line"></div>
+                                                                        </div>
+
+                                                                        <div class="news__userContent">
+                                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                                        elit. Asperiores, suscipit id expedita
+                                                                                        voluptatem, beatae ipsa quaerat officiis
+                                                                                        velit vel est quasi necessitatibus
+                                                                                        obcaecati quo minima dolorem aperiam
+                                                                                        nulla veritatis placeat.</p>
+                                                                        </div>
+
+                                                                        <div class="news__activity">
+                                                                                Vybe-btn is similar to like
+                                                                                <button class="news__activity__btn vybe-btn">
+                                                                                        <span class="news__activity--icon">
+                                                                                                <svg class="user-nav__icon">
+                                                                                                        <use href="img/flash.svg#Capa_1"></use>
+                                                                                                </svg>
+                                                                                        </span>
+                                                                                </button>
+                                                                                <button class="news__activity__btn" id="play-btn">
+                                                                                        <span class="news__activity--icon">
+                                                                                                <svg class="user-nav__icon">
+                                                                                                        <use href="img/console.svg#Capa_2"></use>
+                                                                                                </svg>
+                                                                                        </span>
+                                                                                </button>
+                                                                               
+                                                                                <button class="news__activity__btn" id="options-btn">
+                                                                                        <span class="news__activity--icon">
+                                                                                                <svg class="user-nav__icon">
+                                                                                                        <use href="img/more.svg#Capa_1"></use>
+                                                                                                </svg>
+                                                                                        </span>
+                                                                                </button>
+
+
+                                                                        </div>
+                                                                </div>
+                                                        </li>
+
+                                                        <li>
+                                                                <div class="news">
+                                                                        <div class="news__header">
+                                                                                <img src="img/user-2.jpg" class="user-nav__user-photo news__header--img">
+                                                                                <label class="name-title  news__header--title">First Last Name</label>
+                                                                        </div>
+                                                                        <div class="news__userContent">
+                                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                                        elit. Asperiores, suscipit id expedita
+                                                                                        voluptatem, beatae ipsa quaerat officiis
+                                                                                        velit vel est quasi necessitatibus
+                                                                                        obcaecati quo minima dolorem aperiam
+                                                                                        nulla veritatis placeat.</p>
+                                                                        </div>
+
+                                                                        <div class="news__activity">
+                                                                                
+                                                                                <button class="news__activity__btn vybe-btn">
+                                                                                        <span class="news__activity--icon">
+                                                                                                <svg class="user-nav__icon">
+                                                                                                        <use href="img/flash.svg#Capa_1"></use>
+                                                                                                </svg>
+                                                                                        </span>
+                                                                                </button>
+                                                                                <button class="news__activity__btn" id="play-btn">
+                                                                                        <span class="news__activity--icon">
+                                                                                                <svg class="user-nav__icon">
+                                                                                                        <use href="img/console.svg#Capa_2"></use>
+                                                                                                </svg>
+                                                                                        </span>
+                                                                                </button>
+                                                                      
+                                                                                <button class="news__activity__btn" id="options-btn">
+                                                                                        <span class="news__activity--icon">
+                                                                                                <svg class="user-nav__icon">
+                                                                                                        <use href="img/more.svg#Capa_1"></use>
+                                                                                                </svg>
+                                                                                        </span>
+                                                                                </button>
+
+
+                                                                        </div>
+                                                                </div>
+
+                                                                
+                                                        </li> -->
+                                                        <!-- for testing, above this line to be deleted -->
+                                                </ul>
+                                        </div>
+                        </div>
+
+                </div>
+        </div>
+        <!-- Firebase scripts needed to run api calls-->
+        <script defer src="/__/firebase/5.5.8/firebase-app.js"></script>
+        <!-- include only the Firebase features as you need -->
+        <script defer src="/__/firebase/5.5.8/firebase-auth.js"></script>
+        <script defer src="/__/firebase/5.5.8/firebase-firestore.js"></script>
+        <script defer src="/__/firebase/5.5.8/firebase-messaging.js"></script>
+        <script defer src="/__/firebase/5.5.8/firebase-storage.js"></script>
+
+        <!-- initialize the SDK after all desired features are loaded -->
+        <script defer src="/__/firebase/init.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
+        <script src="feed.js"></script>
+        <!-- <script src="home-front.js" type="module "></script> -->
+        <!-- <script src="dummy.js" type="module"></script> -->
+    
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
